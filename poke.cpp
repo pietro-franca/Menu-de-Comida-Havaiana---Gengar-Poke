@@ -730,9 +730,7 @@ main()
     {
       cout << "O Poke " << i + 1 << " ficou no valor de: R" << S << "" << valorCadaPoke << "\n-------------------\n\n";
     }
-
       i++;
-
     }
     
     cout << "-------------------\nSeu pedido ficou no valor total de: R" << S << "" << valor << "\n-------------------";
