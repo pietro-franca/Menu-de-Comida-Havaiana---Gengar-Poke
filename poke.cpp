@@ -1,5 +1,7 @@
 #include <iostream>
 #include <string>
+#include <locale>
+#include <cctype>
 using namespace std;
 
 const float PRECO_BASE = 5.0;
@@ -11,20 +13,6 @@ const float PRECO_MOLHO = 2.0;
 const float EXTRA_LENDARIO = 3.0;
 const float EXTRA_MITICO = 6.0;
 const string MOEDA = "R$";
-
-char acentos[] = {160, 198, 181, 199, 136, 130, 161, 214, 228, 135, 128, 36};
-#define a_agudo acentos[0]
-#define a_tio acentos[1]
-#define A_agudo acentos[2]
-#define A_tio acentos[3]
-#define e_circ acentos[4]
-#define e_agudo acentos[5]
-#define i_agudo acentos[6]
-#define I acentos[7]
-#define o acentos[8]
-#define c acentos[9]
-#define C acentos[10]
-#define S acentos[11]
 
 struct Ingrediente {
   string nome;
@@ -41,6 +29,7 @@ float escolherIngrediente(string titulo, Ingrediente opcoes[], int limite, strin
     }
     char opcao;
     cin >> opcao;
+    opcao = toupper(opcao);
     int idx = opcao - 'A';
     if (idx >= 0 && idx < limite * 2 && !opcoes[idx].nome.empty()) {
       total += opcoes[idx].preco;
@@ -62,13 +51,13 @@ float montarPoke(char &tamanho) {
     {"Cebola Crispy", 5}, {"Chips de Mandioca", 2.5}, {"Palha de Nori", 2.5}, {}
   };
   Ingrediente proteinas[] = {
-    {"Frango Grelhado", 6.5}, {"Salm" + string(1, a_tio) + "o", 8}, {"Atum", 5}, {"Ovo de Codorna", 5}, {}
+    {"Frango Grelhado", 6.5}, {"Salmao", 8}, {"Atum", 5}, {"Ovo de Codorna", 5}, {}
   };
   Ingrediente nuts[] = {
     {"Amendoim", 2}, {"Castanha de Caju", 3.5}, {"Milho Crunch", 2}, {}
   };
   Ingrediente molhos[] = {
-    {"Mostarda e Mel", 3}, {"Shoyo", 2}, {"Tar" + string(1, e_circ), 2}, {}
+    {"Mostarda e Mel", 3}, {"Shoyo", 2}, {"Tare", 2}, {}
   };
 
   char escolhidos[5];
@@ -77,7 +66,7 @@ float montarPoke(char &tamanho) {
   total += escolherIngrediente("Base", bases, 2, "base", escolhidos);
   total += escolherIngrediente("Topping", toppings, 3, "topping", escolhidos);
   total += escolherIngrediente("Crunch", crunches, 2, "crunch", escolhidos);
-  total += escolherIngrediente("Prote" + string(1, i_agudo) + "na", proteinas, 2, "prote" + string(1, i_agudo) + "na", escolhidos);
+  total += escolherIngrediente("Proteina", proteinas, 2, "proteina", escolhidos);
   total += escolherIngrediente("Nut", nuts, 1, "nut", escolhidos);
   total += escolherIngrediente("Molho", molhos, 1, "molho", escolhidos);
 
@@ -98,6 +87,7 @@ float escolherPronto(int escolha, char tamanho) {
 }
 
 int main() {
+  setlocale(LC_ALL, "");
   int qtd, modo, escolha;
   char tamanho;
   float valorTotal = 0;
@@ -107,8 +97,9 @@ int main() {
 
   for (int i = 0; i < qtd; ++i) {
     cout << "\nPoke " << i + 1 << ":\n";
-    cout << "Tamanho (N - Normal, L - Lend" << a_agudo << "rio, M - M" << i_agudo << "tico): ";
+    cout << "Tamanho (N - Normal, L - Lendario (+R$3.00), M - Mitico (+R$6.00)): ";
     cin >> tamanho;
+    tamanho = toupper(tamanho);
 
     cout << "1 - Montar Poke\n2 - Escolher pronto\n";
     cin >> modo;
