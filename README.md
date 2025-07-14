@@ -1,7 +1,6 @@
-## Gengar Poke - Menu de Comida Havaiana
+## Gengar Poke - Hawaiian Food Menu
 
-Este repositório apresenta um trabalho que realizei durante o curso de Ciências da Computação, na UNESP - Rio Claro. 
+This repository presents a project I completed during my Computer Science degree at UNESP - Rio Claro.
 
-Basicamente, é um programa que funciona como um Menu de comida havaiana, em que você pode montar o seu próprio poke, ou escolher opções já prontas, que são personalizadas com nomes de pokémon.
-O programa oferece opções de tamanho, montagem e pratos prontos, e no final, mostra o valor total do pedido.
+Basically, it's a program that works like a Hawaiian food menu, where you can create your own poke bowl or choose from pre-made options, personalized with Pokémon names. The program offers options for size, assembly, and finished dishes, and at the end, displays the total order price.
    
